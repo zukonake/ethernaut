@@ -4,15 +4,19 @@
 #include <luaPP.hpp>
 //
 #include <ext/loadable.hpp>
-#include <entity/jointShape.hpp>
+#include <entity/shape.hpp>
 
-class Part : public Loadable
+class Dataset;
+
+class Part : public virtual Loadable, public sf::Drawable
 {
 public:
-	Part( const JointShape& shape );
-	Part( const LPP::Table* table );
+	Part( const Dataset& dataset, const LPP::Table* table = nullptr );
+
+	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 private:
-	const JointShape& mShape;
+	const Shape& mShape;
+	sf::Transform mTransform;
 };
 
 #endif

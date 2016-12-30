@@ -1,14 +1,14 @@
 #include "dataset.hpp"
 //
-#include <entity/jointShape.hpp>
+#include <entity/shape.hpp>
 #include <entity/part.hpp>
 
 Dataset::Dataset()
 {
 	loadConfig();
 	std::string datasetName = *getConfig< LPP::String >( "datasetName" );
-	initializeObjects< JointShape >( mDatasetPath + datasetName + "shapes" );
-	initializeObjects< Part >( mDatasetPath + datasetName + "parts" );
+	initializeObjects< Shape >( mDatasetPath + datasetName + "shape" );
+	initializeObjects< Part >( mDatasetPath + datasetName + "part" );
 }
 
 Dataset::~Dataset()
@@ -21,16 +21,10 @@ Dataset::~Dataset()
 	delete mConfigFile;
 }
 
-const sf::Texture& Dataset::getTileset() const noexcept
-{
-	return mTileset;
-}
-
 void Dataset::loadConfig()
 {
 	mConfigFile = mLuaStack.loadFile( mDatasetPath + mConfigPath );
 	mLuaStack.call();
 	mLuaStack.loadGlobal( "config" );
 	mConfig = mLuaStack.get< LPP::Table >();
-	mTileset.loadFromFile( *getConfig< LPP::String >( "texturePath" ));
 }

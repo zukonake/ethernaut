@@ -15,6 +15,8 @@ public:
 
 	OutputData requestOutputData() noexcept;
 	void receiveInputData( InputData inputData ) noexcept;
+private:
+	const Dataset& mDataset;
 };
 
 #endif

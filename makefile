@@ -12,7 +12,7 @@ INCFLAGS := -I include -I src
 LIBFLAGS := -L lib -L /usr/lib
 CXXFLAGS := $(STD) -Wall $(DEBUG) $(INCFLAGS)
 LDFLAGS := $(STD) -Wall $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)
-COMPILER := clang++
+COMPILER := g++
 
 .PHONY : clean run
 

@@ -12,7 +12,7 @@
 //
 #include <ext/fileSystemAdapter.hpp>
 #include <ext/loadable.hpp>
-#include <entity/jointShape.hpp>
+#include <entity/shape.hpp>
 #include <entity/part.hpp>
 
 class Loadable;
@@ -29,7 +29,6 @@ public:
 	const T* getObject( const std::string& key ) const;
 	template < typename T = LPP::StackElement >
 	const T* getConfig( const std::string& key ) const;
-	const sf::Texture& getTileset() const noexcept;
 private:
 	template< typename T = Loadable >
 	void initializeObjects( const std::string& directoryPath );
@@ -37,7 +36,6 @@ private:
 
 	FileSystemAdapter mFileSystem;
 	LPP::LuaStack mLuaStack;
-	sf::Texture mTileset;
 
 	std::unordered_map< std::string, const Loadable* > mObjects;
 
@@ -68,7 +66,7 @@ void Dataset::initializeObjects( const std::string& directoryPath )
 			const LPP::Function* script = mLuaStack.loadFile( iFile );
 			mLuaStack.call();
 			mLuaStack.loadGlobals();
-			output[ *mLuaStack.at< LPP::String >( "loadableName" ) ] = new T( mLuaStack.getGlobals());
+			output[ *mLuaStack.at< LPP::String >( "loadableName" ) ] = new T( *this, mLuaStack.getGlobals());
 			delete script;
 		}
 	}

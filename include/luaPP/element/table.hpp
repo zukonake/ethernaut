@@ -31,17 +31,19 @@ public:
 
 	template< typename T = StackElement >
 	const T* operator[]( const std::string& key ) const;
+
+	const Value& get() const noexcept;
 private:
 	Value mValue;
 };
 
-template< typename T >
+template< typename T = StackElement >
 const T* Table::at( const std::string& key ) const
 {
 	return dynamic_cast< const T* >( mValue.at( key ));
 }
 
-template< typename T >
+template< typename T = StackElement >
 const T* Table::operator[]( const std::string& key ) const
 {
 	return dynamic_cast< const T* >( mValue.at( key ));

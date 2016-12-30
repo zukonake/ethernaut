@@ -6,11 +6,13 @@ namespace LPP
 	class Table;
 }
 
+class Dataset;
+
 class Loadable
 {
 public:
 	Loadable() = default;
-	explicit Loadable( const LPP::Table* table ) { }
+	explicit Loadable( const Dataset& dataset, const LPP::Table* table = nullptr ) { }
 
 	virtual ~Loadable() = default;
 };
