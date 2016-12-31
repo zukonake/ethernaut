@@ -63,4 +63,5 @@ void Shape::initializeConvexShape( const Vectors& points, const Vectors& customJ
 	{
 		mJoints.push_back( iterator );
 	}
+	sf::ConvexShape::setOutlineThickness( 1 );
 }

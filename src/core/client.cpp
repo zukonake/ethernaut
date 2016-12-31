@@ -31,7 +31,13 @@ void Client::receiveOutputData( OutputData outputData ) noexcept
 	}
 	if( !SFMLAdapter::isRunning())
 	{
-		SFMLAdapter::openWindow( outputData.windowSize, outputData.windowTitle );
+		const LPP::Table* graphicSettings = mDataset.getConfig< LPP::Table >( "graphicSettings" );
+		SFMLAdapter::openWindow(
+			conversion::tableToSize( graphicSettings->at< LPP::Table >( "size" )),
+			*graphicSettings->at< LPP::String >( "title" ),
+			*graphicSettings->at< LPP::Number >( "fpsLimit" ),
+			*graphicSettings->at< LPP::Number >( "vsync" ),
+			*graphicSettings->at< LPP::Number >( "antialiasingLevel" ));
 	}
 	render( outputData );
 	update();

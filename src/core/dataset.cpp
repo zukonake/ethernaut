@@ -3,7 +3,7 @@
 Dataset::Dataset()
 {
 	loadConfig();
-	std::string datasetName = *getConfig< LPP::String >( "datasetName" );
+	std::string datasetName = getConfig< LPP::String >( "datasetName" )->get() + "/";
 	initializeObjects< Shape >( mDatasetPath + datasetName + "shape" );
 	initializeObjects< PartSubtype >( mDatasetPath + datasetName + "partSubtype" );
 	initializeObjects< EntitySubtype >( mDatasetPath + datasetName + "entitySubtype" );

@@ -11,7 +11,7 @@ SFMLAdapter::~SFMLAdapter() noexcept
 void SFMLAdapter::update() noexcept
 {
 	mWindow.display();
-	mWindow.clear( sf::Color( 0, 0, 0 ) );
+	mWindow.clear( sf::Color::Black );
 }
 
 void SFMLAdapter::draw( const sf::Drawable& drawable, sf::RenderStates states )
@@ -20,17 +20,18 @@ void SFMLAdapter::draw( const sf::Drawable& drawable, sf::RenderStates states )
 	mWindow.draw( drawable, states );
 }
 
-void SFMLAdapter::openWindow( const Size& windowSize, const std::string& windowTitle )
+void SFMLAdapter::openWindow( const Size& windowSize, const std::string& windowTitle, uint8_t fpsLimit, bool vsync, uint8_t antialiasingLevel )
 {
-	mWindow.create( sf::VideoMode( windowSize.x, windowSize.y, 32 ), windowTitle );
+	mSettings.antialiasingLevel = antialiasingLevel;
+	mWindow.create( sf::VideoMode( windowSize.x, windowSize.y, 32 ), windowTitle, sf::Style::Default, mSettings );
 	if( !mWindow.isOpen() )
 	{
 		throw std::runtime_error( "SFMLAdapter::openWindow: couldn't initialize window" );
 		return;
 	}
 	mWindow.clear( sf::Color( 0, 0, 0 ) );
-	mWindow.setVerticalSyncEnabled( true );
-	mWindow.setFramerateLimit( 60 );
+	mWindow.setVerticalSyncEnabled( vsync );
+	mWindow.setFramerateLimit( fpsLimit );
 }
 
 bool SFMLAdapter::isRunning() const noexcept

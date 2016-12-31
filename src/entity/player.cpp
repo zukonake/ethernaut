@@ -12,10 +12,8 @@ Player::Player( const Dataset& dataset, const Point& position, World* world ) :
 OutputData Player::requestOutputData() noexcept
 {
 	OutputData returnValue = mOutputData;
-	returnValue.entities.emplace_back( mDataset.getObject< EntitySubtype >( "scout" ));
-	returnValue.entities[0].mTransform.translate( 15, 15 );
-	returnValue.windowSize = conversion::tableToSize( mDataset.getConfig< LPP::Table >( "windowSize" ));
-	returnValue.windowTitle = *mDataset.getConfig< LPP::String >( "windowTitle" );
+	returnValue.entities.emplace_back( mDataset.getObject< EntitySubtype >( "testVehicle" ));
+	returnValue.entities[0].mTransform.translate( 150, 150 );
 	return returnValue;
 }
 

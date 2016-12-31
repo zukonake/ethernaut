@@ -10,8 +10,6 @@
 struct OutputData
 {
 	std::vector< Entity > entities;
-	Size windowSize;
-	std::string windowTitle;
 	bool end = false;
 };
 

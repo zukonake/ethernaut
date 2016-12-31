@@ -68,6 +68,7 @@ void Dataset::initializeObjects( const std::string& directoryPath )
 			mLuaStack.call();
 			mLuaStack.loadGlobals();
 			output[ *mLuaStack.at< LPP::String >( "loadableName" ) ] = new T( *this, mLuaStack.getGlobals());
+			std::cout << "Dataset::initializeObjects()::Loaded: " << mLuaStack.at< LPP::String >( "loadableName" )->get() << "\n";
 			delete script;
 		}
 	}
