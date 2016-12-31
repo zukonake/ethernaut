@@ -14,6 +14,12 @@ void SFMLAdapter::update() noexcept
 	mWindow.clear( sf::Color( 0, 0, 0 ) );
 }
 
+void SFMLAdapter::draw( const sf::Drawable& drawable, sf::RenderStates states )
+{
+	states.transform.combine( mTransform );
+	mWindow.draw( drawable, states );
+}
+
 void SFMLAdapter::openWindow( const Size& windowSize, const std::string& windowTitle )
 {
 	mWindow.create( sf::VideoMode( windowSize.x, windowSize.y, 32 ), windowTitle );
@@ -50,6 +56,11 @@ std::vector< sf::Event > SFMLAdapter::getEvents() noexcept
 sf::RenderWindow& SFMLAdapter::getWindow() noexcept
 {
 	return mWindow;
+}
+
+sf::Transform& SFMLAdapter::getTransform() noexcept
+{
+	return mTransform;
 }
 
 Size SFMLAdapter::getWindowSize() const noexcept

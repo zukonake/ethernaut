@@ -7,5 +7,7 @@ build/obj/client.o: src/core/client.cpp src/core/client.hpp include/nonCopyable.
  include/luaPP/element/table.hpp include/luaPP/element/function.hpp \
  include/luaPP/luaStack.hpp include/luaPP/element/table.hpp \
  src/ext/fileSystemAdapter.hpp src/ext/loadable.hpp src/entity/shape.hpp \
- src/entity/part.hpp src/core/server.hpp src/entity/player.hpp \
- src/core/outputData.hpp src/world.hpp src/core/inputData.hpp
+ src/entity/partSubtype.hpp src/entity/entitySubtype.hpp \
+ src/entity/part.hpp src/conversion.hpp src/core/server.hpp \
+ src/entity/player.hpp src/core/outputData.hpp src/entity/entity.hpp \
+ src/world.hpp src/core/inputData.hpp

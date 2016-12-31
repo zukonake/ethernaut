@@ -1,11 +1,10 @@
 luaPP =
 {
-	loadableName = "square",
+	loadableName = "triangle",
 	points =
 	{
 		{ 0, 0 },
 		{ 10, 0 },
-		{ 10, 10 },
 		{ 0, 10 }
 	},
 	customJoints = { },

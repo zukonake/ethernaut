@@ -1,8 +1,12 @@
 config =
 {
 	datasetName = "generic/",
-	windowSize = { x = 800, y = 600 },
+	windowSize = { 800, 600 },
 	windowTitle = "Ethernaut-Testing",
-	spriteSize = 24,
-	tileSize = 24,
+	transform =
+	{
+		position = { 0, 0 },
+		rotation = 0,
+		scale = { 5, 5 }
+	}
 }

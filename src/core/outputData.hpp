@@ -5,11 +5,11 @@
 #include <string>
 //
 #include <typedef.hpp>
-#include <entity/part.hpp>
+#include <entity/entity.hpp>
 
 struct OutputData
 {
-	std::vector< Part > entities; //TODO
+	std::vector< Entity > entities;
 	Size windowSize;
 	std::string windowTitle;
 	bool end = false;

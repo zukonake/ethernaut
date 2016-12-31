@@ -6,4 +6,5 @@ build/obj/dataset.o: src/core/dataset.cpp src/core/dataset.hpp include/luaPP.hpp
  include/luaPP/element/table.hpp include/luaPP/element/function.hpp \
  include/luaPP/luaStack.hpp include/luaPP/element/table.hpp \
  src/ext/fileSystemAdapter.hpp src/ext/loadable.hpp src/entity/shape.hpp \
- src/typedef.hpp src/entity/part.hpp
+ src/typedef.hpp src/entity/partSubtype.hpp src/entity/entitySubtype.hpp \
+ src/entity/part.hpp

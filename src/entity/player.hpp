@@ -17,6 +17,7 @@ public:
 	void receiveInputData( InputData inputData ) noexcept;
 private:
 	const Dataset& mDataset;
+	OutputData mOutputData;
 };
 
 #endif

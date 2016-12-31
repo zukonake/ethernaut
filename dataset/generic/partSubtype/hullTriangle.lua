@@ -2,5 +2,6 @@ luaPP =
 {
 	loadableName = "hullSquare",
 	name = "Hull",
-	shape = "square"
+	shape = "square",
+	color = { 150, 150, 150, 255 }
 }

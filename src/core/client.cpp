@@ -1,8 +1,14 @@
 #include "client.hpp"
 //
+#include <conversion.hpp>
 #include <core/server.hpp>
 #include <core/outputData.hpp>
 #include <core/inputData.hpp>
+
+Client::Client()
+{
+	SFMLAdapter::getTransform() = conversion::tableToTransform( mDataset.getConfig< LPP::Table >( "transform" ));
+}
 
 Client::~Client()
 {
@@ -28,6 +34,7 @@ void Client::receiveOutputData( OutputData outputData ) noexcept
 		SFMLAdapter::openWindow( outputData.windowSize, outputData.windowTitle );
 	}
 	render( outputData );
+	update();
 }
 
 void Client::connect( Server* server )
@@ -55,5 +62,8 @@ bool Client::isConnected() const noexcept
 
 void Client::render( const OutputData& outputData )
 {
-	//TODO
+	for( auto& iEntity : outputData.entities )
+	{
+		SFMLAdapter::draw( iEntity );
+	}
 }

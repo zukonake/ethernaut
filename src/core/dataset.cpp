@@ -1,14 +1,12 @@
 #include "dataset.hpp"
-//
-#include <entity/shape.hpp>
-#include <entity/part.hpp>
 
 Dataset::Dataset()
 {
 	loadConfig();
 	std::string datasetName = *getConfig< LPP::String >( "datasetName" );
 	initializeObjects< Shape >( mDatasetPath + datasetName + "shape" );
-	initializeObjects< Part >( mDatasetPath + datasetName + "part" );
+	initializeObjects< PartSubtype >( mDatasetPath + datasetName + "partSubtype" );
+	initializeObjects< EntitySubtype >( mDatasetPath + datasetName + "entitySubtype" );
 }
 
 Dataset::~Dataset()

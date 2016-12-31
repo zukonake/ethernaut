@@ -23,7 +23,7 @@ struct InputData;
 class Client : virtual NonCopyable, SFMLAdapter
 {
 public:
-	Client() = default;
+	Client();
 	~Client();
 
 	InputData requestInputData() noexcept;

@@ -1,22 +1,26 @@
 #ifndef PART_HPP
 #define PART_HPP
 
-#include <luaPP.hpp>
+#include <SFML/Graphics.hpp>
 //
+#include <typedef.hpp>
 #include <ext/loadable.hpp>
-#include <entity/shape.hpp>
 
+class PartSubtype;
 class Dataset;
 
-class Part : public virtual Loadable, public sf::Drawable
+class Part : public virtual Loadable, public virtual sf::Drawable
 {
 public:
-	Part( const Dataset& dataset, const LPP::Table* table = nullptr );
+	Part( const Dataset& dataset, const LPP::Table* table );
+	Part( const PartSubtype* subtype, const sf::Color& color = sf::Color::White );
 
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
-private:
-	const Shape& mShape;
+
 	sf::Transform mTransform;
+private:
+	const PartSubtype* mSubtype;
+	sf::Color mColor;
 };
 
 #endif

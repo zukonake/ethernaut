@@ -13,7 +13,8 @@
 #include <ext/fileSystemAdapter.hpp>
 #include <ext/loadable.hpp>
 #include <entity/shape.hpp>
-#include <entity/part.hpp>
+#include <entity/partSubtype.hpp>
+#include <entity/entitySubtype.hpp>
 
 class Loadable;
 

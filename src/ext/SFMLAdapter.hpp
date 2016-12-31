@@ -19,6 +19,7 @@ public:
 	virtual ~SFMLAdapter() noexcept;
 
 	void update() noexcept;
+	void draw( const sf::Drawable& drawable, sf::RenderStates states = sf::RenderStates::Default );
 
 	void openWindow( const Size& windowSize, const std::string& windowTitle );
 
@@ -27,8 +28,10 @@ public:
 
 	std::vector< sf::Event > getEvents() noexcept;
 	sf::RenderWindow& getWindow() noexcept;
+	sf::Transform& getTransform() noexcept;
 	Size getWindowSize() const noexcept;
 private:
+	sf::Transform mTransform;
 	sf::RenderWindow mWindow;
 	sf::Event mEvent;
 	sf::Keyboard mKeyboard;

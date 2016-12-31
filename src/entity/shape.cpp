@@ -5,7 +5,7 @@
 #include <conversion.hpp>
 
 Shape::Shape( const Vectors& points, const Vectors& customJoints ) :
-	ConvexShape( points.size())
+	sf::ConvexShape( points.size())
 {
 	initializeConvexShape( points, customJoints );
 }
@@ -17,16 +17,20 @@ Shape::Shape( const Dataset& dataset, const LPP::Table* table ) :
 	const LPP::Table* customJointsTable = table->at< LPP::Table >( "customJoints" );
 	Vectors points;
 	Vectors customJoints;
-	for( Index iterator = 0; iterator != pointsTable->get().size(); iterator++ )
+	for( Index iterator = 1; iterator <= pointsTable->get().first.size(); iterator++ )
 	{
-		points.push_back( conversion::tableToPoint( pointsTable->at< LPP::Table >( "p" + std::to_string( iterator ))));
+		points.push_back( conversion::tableToPoint( pointsTable->at< LPP::Table >( iterator )));
 	}
-	if( customJointsTable->get().size() != 0 )
+	if( customJointsTable->get().first.size() != 0 )
 	{
-		for( Index iterator = 0; iterator != pointsTable->get().size(); iterator++ )
+		for( Index iterator = 1; iterator <= pointsTable->get().first.size(); iterator++ )
 		{
-			customJoints.push_back( conversion::tableToPoint( pointsTable->at< LPP::Table >( "p" + std::to_string( iterator ))));
+			customJoints.push_back( conversion::tableToPoint( pointsTable->at< LPP::Table >( iterator )));
 		}
+	}
+	if( table->get().second.count( "origin" ) != 0 )
+	{
+		sf::ConvexShape::setOrigin( conversion::tableToPoint( table->at< LPP::Table >( "origin" )));
 	}
 	initializeConvexShape( points, customJoints );
 }
@@ -38,10 +42,10 @@ const Vectors& Shape::getJoints() const noexcept
 
 void Shape::initializeConvexShape( const Vectors& points, const Vectors& customJoints )
 {
-	ConvexShape::setPointCount( points.size());
+	sf::ConvexShape::setPointCount( points.size());
 	for( Index iterator = 0; iterator < points.size(); iterator++ )
 	{
-		ConvexShape::setPoint( iterator, points[ iterator ]);
+		sf::ConvexShape::setPoint( iterator, points[ iterator ]);
 		Point point1;
 		Point point2;
 		if( iterator == 0 )
