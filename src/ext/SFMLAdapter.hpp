@@ -12,7 +12,7 @@
 //
 #include <typedef.hpp>
 
-class SFMLAdapter : virtual NonCopyable
+class SFMLAdapter : virtual NonCopyable, public sf::Transformable
 {
 public:
 	SFMLAdapter() = default;
@@ -29,11 +29,11 @@ public:
 
 	std::vector< sf::Event > getEvents() noexcept;
 	sf::RenderWindow& getWindow() noexcept;
-	sf::Transform& getTransform() noexcept;
+	sf::View& getView() noexcept;
 	Size getWindowSize() const noexcept;
 private:
+	sf::View mView;
 	sf::ContextSettings mSettings;
-	sf::Transform mTransform;
 	sf::RenderWindow mWindow;
 	sf::Event mEvent;
 	sf::Keyboard mKeyboard;

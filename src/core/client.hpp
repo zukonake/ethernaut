@@ -7,7 +7,7 @@
 #include <nonCopyable.hpp>
 //
 #include <ext/SFMLAdapter.hpp>
-#include <core/dataset.hpp>
+#include <data/dataset.hpp>
 
 class Server;
 struct OutputData;

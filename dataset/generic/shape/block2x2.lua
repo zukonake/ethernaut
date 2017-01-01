@@ -1,13 +1,15 @@
+local a = 50 * 2
+
 luaPP =
 {
 	loadableName = "block2x2",
 	points =
 	{
 		{ 0, 0 },
-		{ 100, 0 },
-		{ 100, 100 },
-		{ 0, 100 }
+		{ a, 0 },
+		{ a, a },
+		{ 0, a }
 	},
 	customJoints = { },
-	origin = { 50, 50 }
+	origin = { a / 2, a / 2 }
 }

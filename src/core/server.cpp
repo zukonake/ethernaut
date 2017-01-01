@@ -1,8 +1,7 @@
 #include "server.hpp"
 //
 #include <core/client.hpp>
-#include <entity/player.hpp>
-#include <core/inputData.hpp>
+#include <data/inputData.hpp>
 
 Server::Server() :
 	mWorld( mDataset )
@@ -25,12 +24,13 @@ void Server::loop()
 		iPair.first.receiveInputData( iPair.second->requestInputData() );
 		iPair.second->receiveOutputData( iPair.first.requestOutputData() );
 	}
+	mWorld.simulate();
 	//TODO simulations
 }
 
 void Server::connect( Client* client )
 {
-	mClients.push_back( std::pair< Player, Client* >( Player( mDataset, { 0, 0 }, &mWorld ), client ) ); //TODO assign world
+	mClients.push_back( std::pair< Player, Client* >( Player( mDataset, { 0, 0 }, mWorld ), client ) ); //TODO assign world
 }
 
 void Server::disconnect( Client* client )

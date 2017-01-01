@@ -16,7 +16,8 @@ void SFMLAdapter::update() noexcept
 
 void SFMLAdapter::draw( const sf::Drawable& drawable, sf::RenderStates states )
 {
-	states.transform.combine( mTransform );
+	mWindow.setView( mView );
+	states.transform.combine( this->getTransform());
 	mWindow.draw( drawable, states );
 }
 
@@ -32,6 +33,7 @@ void SFMLAdapter::openWindow( const Size& windowSize, const std::string& windowT
 	mWindow.clear( sf::Color( 0, 0, 0 ) );
 	mWindow.setVerticalSyncEnabled( vsync );
 	mWindow.setFramerateLimit( fpsLimit );
+	mView.setSize( windowSize.x ,windowSize.y );
 }
 
 bool SFMLAdapter::isRunning() const noexcept
@@ -59,9 +61,9 @@ sf::RenderWindow& SFMLAdapter::getWindow() noexcept
 	return mWindow;
 }
 
-sf::Transform& SFMLAdapter::getTransform() noexcept
+sf::View& SFMLAdapter::getView() noexcept
 {
-	return mTransform;
+	return mView;
 }
 
 Size SFMLAdapter::getWindowSize() const noexcept

@@ -1,13 +1,13 @@
 #include "client.hpp"
 //
-#include <conversion.hpp>
+#include <auxiliary.hpp>
 #include <core/server.hpp>
-#include <core/outputData.hpp>
-#include <core/inputData.hpp>
+#include <data/outputData.hpp>
+#include <data/inputData.hpp>
 
 Client::Client()
 {
-	SFMLAdapter::getTransform() = conversion::tableToTransform( mDataset.getConfig< LPP::Table >( "transform" ));
+	aux::setTransformable( *dynamic_cast< SFMLAdapter* >( this ), mDataset.getConfig< LPP::Table >( "transform" ));
 }
 
 Client::~Client()
@@ -29,11 +29,13 @@ void Client::receiveOutputData( OutputData outputData ) noexcept
 		disconnect();
 		return;
 	}
+	SFMLAdapter::getView().setCenter( outputData.viewPosition );
+	SFMLAdapter::getView().zoom( outputData.zoom );
 	if( !SFMLAdapter::isRunning())
 	{
 		const LPP::Table* graphicSettings = mDataset.getConfig< LPP::Table >( "graphicSettings" );
 		SFMLAdapter::openWindow(
-			conversion::tableToSize( graphicSettings->at< LPP::Table >( "size" )),
+			aux::tableToSize( graphicSettings->at< LPP::Table >( "size" )),
 			*graphicSettings->at< LPP::String >( "title" ),
 			*graphicSettings->at< LPP::Number >( "fpsLimit" ),
 			*graphicSettings->at< LPP::Number >( "vsync" ),

@@ -5,20 +5,22 @@
 //
 #include <luaPP.hpp>
 //
-#include <ext/loadable.hpp>
+#include <data/loadable.hpp>
 #include <typedef.hpp>
 
 class Shape : public virtual Loadable, public sf::ConvexShape
 {
 public:
-	Shape( const Vectors& points, const Vectors& customJoints = Vectors());
+	Shape( const std::vector< Point >& points, const std::vector< Point >& customJoints );
 	Shape( const Dataset& dataset, const LPP::Table* table );
-	
-	const Vectors& getJoints()  const noexcept;
-private:
-	void initializeConvexShape( const Vectors& points, const Vectors& customJoints );
 
-	Vectors mJoints;
+	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
+
+	const std::vector< Point >& getJoints()  const noexcept;
+private:
+	void initializeConvexShape( const std::vector< Point >& points, const std::vector< Point >& customJoints, const Point& origin );
+
+	std::vector< Point > mJoints;
 };
 
 #endif

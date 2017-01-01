@@ -1,6 +1,6 @@
 #include "entitySubtype.hpp"
 //
-#include <conversion.hpp>
+#include <auxiliary.hpp>
 
 EntitySubtype::EntitySubtype( const Dataset& dataset, const LPP::Table* table )
 {

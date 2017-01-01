@@ -8,7 +8,7 @@
 
 typedef std::size_t Index;
 typedef sf::Vector2f Point;
+typedef sf::Vector2f Vector;
 typedef sf::Vector2u Size;
-typedef std::vector< Point > Vectors;
 
 #endif

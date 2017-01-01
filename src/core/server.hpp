@@ -7,8 +7,8 @@
 //
 #include <nonCopyable.hpp>
 //
-#include <entity/player.hpp>
-#include <core/dataset.hpp>
+#include <core/player.hpp>
+#include <data/dataset.hpp>
 #include <world.hpp>
 
 class Client;

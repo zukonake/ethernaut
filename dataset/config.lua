@@ -7,7 +7,7 @@ config =
 		title = "Ethernaut-Testing",
 		fpsLimit = 60,
 		vsync = 1,
-		antialiasingLevel = 4
+		antialiasingLevel = 8
 	},
 	transform =
 	{

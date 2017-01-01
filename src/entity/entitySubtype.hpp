@@ -5,7 +5,7 @@
 //
 #include <SFML/Graphics.hpp>
 //
-#include <ext/loadable.hpp>
+#include <data/loadable.hpp>
 #include <entity/part.hpp>
 
 class EntitySubtype : public virtual Loadable, public virtual sf::Drawable

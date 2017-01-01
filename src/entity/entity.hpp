@@ -4,11 +4,11 @@
 #include <SFML/Graphics.hpp>
 //
 #include <typedef.hpp>
-#include <ext/loadable.hpp>
+#include <data/loadable.hpp>
 
 class EntitySubtype;
 
-class Entity : public virtual Loadable, public virtual sf::Drawable
+class Entity : public virtual Loadable, public virtual sf::Drawable, public sf::Transformable
 {
 public:
 	Entity( const Dataset& dataset, const LPP::Table* table );
@@ -16,8 +16,13 @@ public:
 
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
-	sf::Transform mTransform;
+	virtual void simulate();
+
+	const Vector& getVelocity() const noexcept;
+
+	void addVelocity( const Vector& value ) noexcept;
 private:
+	Vector mVelocity;
 	const EntitySubtype* mSubtype = nullptr;
 };
 

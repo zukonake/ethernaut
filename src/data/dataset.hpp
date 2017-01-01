@@ -11,7 +11,7 @@
 #include <luaPP.hpp>
 //
 #include <ext/fileSystemAdapter.hpp>
-#include <ext/loadable.hpp>
+#include <data/loadable.hpp>
 #include <entity/shape.hpp>
 #include <entity/partSubtype.hpp>
 #include <entity/entitySubtype.hpp>
@@ -67,8 +67,8 @@ void Dataset::initializeObjects( const std::string& directoryPath )
 			const LPP::Function* script = mLuaStack.loadFile( iFile );
 			mLuaStack.call();
 			mLuaStack.loadGlobals();
+			std::cout << "Dataset::initializeObjects()::Loading: " << mLuaStack.at< LPP::String >( "loadableName" )->get() << "\n";
 			output[ *mLuaStack.at< LPP::String >( "loadableName" ) ] = new T( *this, mLuaStack.getGlobals());
-			std::cout << "Dataset::initializeObjects()::Loaded: " << mLuaStack.at< LPP::String >( "loadableName" )->get() << "\n";
 			delete script;
 		}
 	}

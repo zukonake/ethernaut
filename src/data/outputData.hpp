@@ -11,6 +11,8 @@ struct OutputData
 {
 	std::vector< Entity > entities;
 	bool end = false;
+	float zoom = 1;
+	Point viewPosition;
 };
 
 #endif

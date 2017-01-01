@@ -1,6 +1,6 @@
-#include "conversion.hpp"
+#include "auxiliary.hpp"
 
-Point conversion::tableToPoint( const LPP::Table* table )
+Point aux::tableToPoint( const LPP::Table* table )
 {
 	Point returnValue;
 	returnValue.x = *table->at< LPP::Number >( 1 );
@@ -8,7 +8,7 @@ Point conversion::tableToPoint( const LPP::Table* table )
 	return returnValue;
 }
 
-Size conversion::tableToSize( const LPP::Table* table )
+Size aux::tableToSize( const LPP::Table* table )
 {
 	Size returnValue;
 	returnValue.x = *table->at< LPP::Number >( 1 );
@@ -16,7 +16,7 @@ Size conversion::tableToSize( const LPP::Table* table )
 	return returnValue;
 }
 
-sf::Color conversion::tableToColor( const LPP::Table* table )
+sf::Color aux::tableToColor( const LPP::Table* table )
 {
 	sf::Color returnValue;
 	returnValue.r = *table->at< LPP::Number >( 1 );
@@ -26,11 +26,23 @@ sf::Color conversion::tableToColor( const LPP::Table* table )
 	return returnValue;
 }
 
-sf::Transform conversion::tableToTransform( const LPP::Table* table )
+sf::Transform aux::tableToTransform( const LPP::Table* table )
 {
 	sf::Transform returnValue;
 	returnValue.translate( tableToPoint( table->at< LPP::Table >( "position" )));
 	returnValue.rotate( *table->at< LPP::Number >( "rotation" ));
 	returnValue.scale( tableToPoint( table->at< LPP::Table >( "scale" )));
 	return returnValue;
+}
+
+sf::Color aux::averageColors( const sf::Color& color1, const sf::Color& color2 )
+{
+	return sf::Color(( color1.r + color2.r ) / 2, ( color1.g + color2.g ) / 2, ( color1.b + color2.b ) / 2, ( color1.a + color2.a ) / 2 );
+}
+
+void aux::setTransformable( sf::Transformable& transformable, const LPP::Table* table )
+{
+	transformable.move( tableToPoint( table->at< LPP::Table >( "position" )));
+	transformable.rotate( *table->at< LPP::Number >( "rotation" ));
+	transformable.scale( tableToPoint( table->at< LPP::Table >( "scale" )));
 }
